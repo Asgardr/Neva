@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Neva {
 
 	class NEVA_API MouseMovedEvent : public Event

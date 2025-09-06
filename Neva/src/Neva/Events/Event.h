@@ -1,9 +1,7 @@
 #pragma once
 
+#include "nvpch.h"
 #include "Neva/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace Neva {
 
