@@ -37,6 +37,12 @@
     <ClInclude Include="src\Neva\Events\MouseEvent.h">
       <Filter>Neva\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Neva\Layer.h">
+      <Filter>Neva</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\LayerStack.h">
+      <Filter>Neva</Filter>
+    </ClInclude>
     <ClInclude Include="src\Neva\Log.h">
       <Filter>Neva</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Neva\Application.cpp">
+      <Filter>Neva</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Neva\Layer.cpp">
+      <Filter>Neva</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Neva\LayerStack.cpp">
       <Filter>Neva</Filter>
     </ClCompile>
     <ClCompile Include="src\Neva\Log.cpp">

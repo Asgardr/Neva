@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Core.h"
+
+#include "Window.h"
+#include "Neva/LayerStack.h"
 #include "Events/Event.h"
 #include "Neva/Events/ApplicationEvent.h"
-#include "Window.h"
 
 namespace Neva {
 
@@ -16,11 +18,15 @@ namespace Neva {
 		void Run();
 
 		void OnEvent(Event& e);
+
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* overlay);
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
 	};
 
 	//To be defined in client

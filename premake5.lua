@@ -14,8 +14,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Neva/vendor/GLFW/include"
+IncludeDir["Glad"] = "Neva/vendor/Glad/include"
 
 include "Neva/vendor/GLFW"
+include "Neva/vendor/Glad"
 
 project "Neva"
 	location "Neva"
@@ -40,12 +42,14 @@ project "Neva"
 	{
 		"Neva/src",
 		"Neva/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib";
 		"dwmapi.lib"
 	}
@@ -58,7 +62,8 @@ project "Neva"
 		defines
 		{
 			"NV_PLATFORM_WINDOWS",
-			"NV_BUILD_DLL"
+			"NV_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -68,14 +73,17 @@ project "Neva"
 
 	filter "configurations:Debug"
 		defines "NV_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NV_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NV_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter {"system:windows", "configurations:Debug"}
@@ -126,14 +134,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "NV_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NV_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NV_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter {"system:windows", "configurations:Debug"}
