@@ -10,6 +10,10 @@
 	#error Neva only supports Windows!
 #endif
 
+#ifdef NV_DEBUG
+	#define NV_ENABLE_ASSERTS
+#endif
+
 #ifdef NV_ENABLE_ASSERTS
 	#define NV_ASSERT(x, ...) {if(!(x)) { NV_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define NV_CORE_ASSERT(x, ...) {if(!(x)) { NV_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

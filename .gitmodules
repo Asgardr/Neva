@@ -4,3 +4,9 @@
 [submodule "Neva/vendor/GLFW"]
 	path = Neva/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/TheCherno/imgui
+[submodule "Neva/vendor/imgui"]
+	path = Neva/vendor/imgui
+	url = https://github.com/TheCherno/imgui

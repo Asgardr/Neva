@@ -15,16 +15,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Neva/vendor/GLFW/include"
 IncludeDir["Glad"] = "Neva/vendor/Glad/include"
+IncludeDir["ImGui"] = "Neva/vendor/imgui"
 
 include "Neva/vendor/GLFW"
 include "Neva/vendor/Glad"
+include "Neva/vendor/imgui"
 
 project "Neva"
 	location "Neva"
 	kind "SharedLib"
 	language "C++"
 	staticruntime "off"
-	runtime "Debug"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -43,20 +44,21 @@ project "Neva"
 		"Neva/src",
 		"Neva/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib";
 		"dwmapi.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -73,17 +75,17 @@ project "Neva"
 
 	filter "configurations:Debug"
 		defines "NV_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NV_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NV_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter {"system:windows", "configurations:Debug"}
@@ -100,7 +102,6 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	staticruntime "off"
-	runtime "Debug"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -124,7 +125,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -134,17 +134,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "NV_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NV_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NV_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter {"system:windows", "configurations:Debug"}
