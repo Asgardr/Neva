@@ -10,12 +10,13 @@ public:
 
 	void OnUpdate() override
 	{
-		NV_INFO("ExampleLayer::Update");
+		if (Neva::Input::IsKeyPressed(NV_KEY_TAB))
+			NV_TRACE("Tab key is pressed!");
 	}
 
 	void OnEvent(Neva::Event& event) override 
 	{
-		NV_TRACE("{0}", event.ToString());
+		//NV_TRACE("{0}", event.ToString());
 	}
 };
 

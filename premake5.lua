@@ -17,9 +17,11 @@ IncludeDir["GLFW"] = "Neva/vendor/GLFW/include"
 IncludeDir["Glad"] = "Neva/vendor/Glad/include"
 IncludeDir["ImGui"] = "Neva/vendor/imgui"
 
-include "Neva/vendor/GLFW"
-include "Neva/vendor/Glad"
-include "Neva/vendor/imgui"
+group "Dependencies"
+	include "Neva/vendor/GLFW"
+	include "Neva/vendor/Glad"
+	include "Neva/vendor/imgui"
+group ""
 
 project "Neva"
 	location "Neva"
@@ -70,7 +72,7 @@ project "Neva"
 
 		postbuildcommands
 		{
-			"{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\""
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"

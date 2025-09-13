@@ -21,6 +21,7 @@ namespace Neva {
 		}
 	};
 
+	// Interface representing a desktop system based Window
 	class NEVA_API Window
 	{
 	public:
