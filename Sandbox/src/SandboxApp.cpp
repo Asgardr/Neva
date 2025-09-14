@@ -1,4 +1,7 @@
 #include <Neva.h>
+#include <Neva/Events/KeyEvent.h>
+
+#include "imgui/imgui.h"
 
 class ExampleLayer : public Neva::Layer
 {
@@ -14,9 +17,20 @@ public:
 			NV_TRACE("Tab key is pressed!");
 	}
 
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World!");
+		ImGui::End();
+	}
+
 	void OnEvent(Neva::Event& event) override 
 	{
 		//NV_TRACE("{0}", event.ToString());
+		if (event.GetEventType() == Neva::EventType::KeyPressed) {
+			Neva::KeyPressedEvent& e = (Neva::KeyPressedEvent&)event;
+			NV_TRACE("{0} key is pressed!", (char)e.GetKeyCode());
+		}
 	}
 };
 
@@ -26,7 +40,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Neva::ImGuiLayer());
 	}
 
 	~Sandbox()

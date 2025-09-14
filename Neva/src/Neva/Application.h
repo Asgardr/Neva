@@ -7,6 +7,8 @@
 #include "Events/Event.h"
 #include "Neva/Events/ApplicationEvent.h"
 
+#include "ImGui/ImGuiLayer.h"
+
 namespace Neva {
 
 	class NEVA_API Application
@@ -28,6 +30,7 @@ namespace Neva {
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

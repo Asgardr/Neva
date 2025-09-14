@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Neva/vendor/GLFW/include"
 IncludeDir["Glad"] = "Neva/vendor/Glad/include"
 IncludeDir["ImGui"] = "Neva/vendor/imgui"
+IncludeDir["glm"] = "Neva/vendor/glm"
 
 group "Dependencies"
 	include "Neva/vendor/GLFW"
@@ -47,7 +48,8 @@ project "Neva"
 		"Neva/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -117,7 +119,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Neva/vendor/spdlog/include",
-		"Neva/src"
+		"Neva/src",
+		"Neva/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
