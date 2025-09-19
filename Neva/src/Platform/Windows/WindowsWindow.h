@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Neva/Window.h"
+#include <Neva/Renderer/GraphicsContext.h>
 
 #include <GLFW/glfw3.h>
 
@@ -29,6 +30,7 @@ namespace Neva {
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

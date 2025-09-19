@@ -9,6 +9,8 @@
 
 #include "ImGui/ImGuiLayer.h"
 
+#include "Neva/Renderer/Shader.h"
+
 namespace Neva {
 
 	class NEVA_API Application
@@ -33,6 +35,9 @@ namespace Neva {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};
