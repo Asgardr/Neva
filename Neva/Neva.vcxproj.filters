@@ -74,6 +74,11 @@
     <ClInclude Include="src\Neva\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Neva\Renderer\Shader.h" />
+    <ClInclude Include="src\Neva\Renderer\Buffer.h" />
+    <ClInclude Include="src\Neva\Renderer\Texture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Neva\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Neva\Application.cpp">
@@ -103,5 +108,9 @@
     <ClCompile Include="src\nvpch.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Neva\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Neva\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Neva\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>
