@@ -16,8 +16,6 @@ namespace Neva {
 			break;
 		case RendererAPI::OpenGl:
 			return new OpenGLVertexBuffer(vertices, size);
-		default:
-			break;
 		}
 
 		NV_CORE_ASSERT(false, "Unknown RendererAPI!");
