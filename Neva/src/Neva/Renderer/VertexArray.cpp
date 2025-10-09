@@ -10,11 +10,11 @@ namespace Neva {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			NV_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
 			return nullptr;
 			break;
-		case RendererAPI::OpenGl:
+		case RendererAPI::API::OpenGl:
 			return new OpenGLVertexArray();
 		}
 
