@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Neva/Core.h"
+#include "Neva/Core/Timestep.h"
 #include "Neva/Events/Event.h"
 
 namespace Neva {
@@ -13,7 +14,7 @@ namespace Neva {
 
 		virtual void OnAttach(){}
 		virtual void OnDetach(){}
-		virtual void OnUpdate(){}
+		virtual void OnUpdate(Timestep ts){}
 		virtual void OnImGuiRender(){}
 		virtual void OnEvent(Event& event){}
 

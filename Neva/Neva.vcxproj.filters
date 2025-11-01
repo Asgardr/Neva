@@ -84,6 +84,8 @@
     <ClInclude Include="src\Neva\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Neva\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Neva\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Neva\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Neva\Application.cpp">
@@ -122,5 +124,6 @@
     <ClCompile Include="src\Neva\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Neva\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Neva\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

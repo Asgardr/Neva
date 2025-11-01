@@ -7,11 +7,9 @@
 #include "Events/Event.h"
 #include "Neva/Events/ApplicationEvent.h"
 
-#include "ImGui/ImGuiLayer.h"
+#include "Neva/Core/Timestep.h"
 
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace Neva {
 
@@ -32,17 +30,12 @@ namespace Neva {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
-
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

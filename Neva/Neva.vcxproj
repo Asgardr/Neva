@@ -149,6 +149,7 @@
     <ClInclude Include="src\Neva.h" />
     <ClInclude Include="src\Neva\Application.h" />
     <ClInclude Include="src\Neva\Core.h" />
+    <ClInclude Include="src\Neva\Core\Timestep.h" />
     <ClInclude Include="src\Neva\EntryPoint.h" />
     <ClInclude Include="src\Neva\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Neva\Events\Event.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="src\Neva\MouseButtonCodes.h" />
     <ClInclude Include="src\Neva\Renderer\Buffer.h" />
     <ClInclude Include="src\Neva\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Neva\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Neva\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Neva\Renderer\Renderer.h" />
     <ClInclude Include="src\Neva\Renderer\RendererAPI.h" />
@@ -187,6 +189,7 @@
     <ClCompile Include="src\Neva\LayerStack.cpp" />
     <ClCompile Include="src\Neva\Log.cpp" />
     <ClCompile Include="src\Neva\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Neva\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Neva\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Neva\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Neva\Renderer\RendererAPI.cpp" />
