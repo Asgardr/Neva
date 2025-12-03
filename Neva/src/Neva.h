@@ -20,6 +20,7 @@
 
 #include "Neva/Renderer/Buffer.h"
 #include "Neva/Renderer/Shader.h"
+#include "Neva/Renderer/Texture.h"
 #include "Neva/Renderer/VertexArray.h"
 
 #include "Neva/Renderer/OrthographicCamera.h"

@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Neva/vendor/GLFW/include"
 IncludeDir["Glad"] = "Neva/vendor/Glad/include"
 IncludeDir["ImGui"] = "Neva/vendor/imgui"
 IncludeDir["glm"] = "Neva/vendor/glm"
+IncludeDir["stb_image"] = "Neva/vendor/stb_image"
 
 group "Dependencies"
 	include "Neva/vendor/GLFW"
@@ -41,6 +42,10 @@ project "Neva"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	defines
@@ -55,7 +60,8 @@ project "Neva"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

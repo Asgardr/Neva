@@ -1,9 +1,12 @@
 #include <Neva.h>
 #include <Neva/Events/KeyEvent.h>
 
+#include <Platform/OpenGL/OpenGLShader.h>
+
 #include "imgui/imgui.h"
 
 #include <glm/ext/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Neva::Layer
 {
@@ -20,7 +23,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
 		};
 
-		std::shared_ptr<Neva::VertexBuffer> vertexBuffer;
+		Neva::Ref<Neva::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Neva::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Neva::BufferLayout layout = {
@@ -33,33 +36,34 @@ public:
 
 		unsigned int indices[3] = { 0, 1, 2 };
 
-		std::shared_ptr<Neva::IndexBuffer> indexBuffer;
+		Neva::Ref<Neva::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Neva::IndexBuffer::Create(indices, 3));
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA.reset(Neva::VertexArray::Create());
 
-		float squareVertices[3 * 4] =
+		float squareVertices[5 * 4] =
 		{
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<Neva::VertexBuffer> squareVB;
+		Neva::Ref<Neva::VertexBuffer> squareVB;
 		squareVB.reset(Neva::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 		Neva::BufferLayout squareVBlayout = {
 			{ Neva::ShaderDataType::Float3, "a_Position"},
+			{ Neva::ShaderDataType::Float2, "a_TexCoord"},
 		};
 
 		squareVB->SetLayout(squareVBlayout);
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Neva::IndexBuffer> squareIB;
+		Neva::Ref<Neva::IndexBuffer> squareIB;
 		squareIB.reset(Neva::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 
 		m_SquareVA->SetIndexBuffer(squareIB);
@@ -128,16 +132,57 @@ public:
 
 			in vec3 v_Position;
 			
-			uniform vec4 u_Color;
+			uniform vec3 u_Color;
 
 			void main()
 			{
-				color = u_Color;
+				color = vec4(u_Color, 1.0);
+			}
+
+		)";
+		m_FlatColorShader.reset(Neva::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 
 		)";
 
-		m_FlatColorShader.reset(Neva::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+
+		)";
+
+		m_TextureShader.reset(Neva::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = Neva::Texture2D::Create("assets/textures/Checkerboard.png");
+
+		std::dynamic_pointer_cast<Neva::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Neva::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Neva::Timestep ts) override
@@ -169,8 +214,8 @@ public:
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
-		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
+		std::dynamic_pointer_cast<Neva::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Neva::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; ++y)
 		{
@@ -178,21 +223,24 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				if (x % 2 == 0)
-					m_FlatColorShader->UploadUniformFloat4("u_Color", redColor);
-				else
-					m_FlatColorShader->UploadUniformFloat4("u_Color", blueColor);
 				Neva::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
-		Neva::Renderer::Submit(m_Shader, m_VertexArray);
+
+		m_Texture->Bind();
+		Neva::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		//Triangle
+		//Neva::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Neva::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override
 	{
-
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(Neva::Event& event) override 
@@ -200,11 +248,13 @@ public:
 
 	}
 private:
-	std::shared_ptr<Neva::Shader> m_Shader;
-	std::shared_ptr<Neva::VertexArray> m_VertexArray;
+	Neva::Ref<Neva::Shader> m_Shader;
+	Neva::Ref<Neva::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Neva::Shader> m_FlatColorShader;
-	std::shared_ptr<Neva::VertexArray> m_SquareVA;
+	Neva::Ref<Neva::Shader> m_FlatColorShader, m_TextureShader;
+	Neva::Ref<Neva::VertexArray> m_SquareVA;
+
+	Neva::Ref<Neva::Texture2D> m_Texture;
 
 	Neva::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
@@ -212,6 +262,8 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraMoveRotation = 90.0f;	
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public Neva::Application
