@@ -6,6 +6,24 @@
 
 namespace Neva {
 
+	Shader* Shader::Create(const std::string& filepath)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			NV_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+			return nullptr;
+			break;
+		case RendererAPI::API::OpenGl:
+			return new OpenGLShader(filepath);
+		default:
+			break;
+		}
+
+		NV_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+
 	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		switch (Renderer::GetAPI())
