@@ -105,7 +105,7 @@ public:
 
 		)";
 
-		m_Shader.reset(Neva::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Neva::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -140,15 +140,15 @@ public:
 			}
 
 		)";
-		m_FlatColorShader.reset(Neva::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = Neva::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		m_TextureShader.reset(Neva::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Neva::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Neva::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Neva::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Neva::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Neva::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Neva::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Neva::Timestep ts) override
@@ -193,10 +193,12 @@ public:
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		Neva::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Neva::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_ChernoLogoTexture->Bind();
-		Neva::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Neva::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		//Triangle
 		//Neva::Renderer::Submit(m_Shader, m_VertexArray);
@@ -216,10 +218,11 @@ public:
 
 	}
 private:
+	Neva::ShaderLibrary m_ShaderLibrary;
 	Neva::Ref<Neva::Shader> m_Shader;
 	Neva::Ref<Neva::VertexArray> m_VertexArray;
 
-	Neva::Ref<Neva::Shader> m_FlatColorShader, m_TextureShader;
+	Neva::Ref<Neva::Shader> m_FlatColorShader;
 	Neva::Ref<Neva::VertexArray> m_SquareVA;
 
 	Neva::Ref<Neva::Texture2D> m_Texture, m_ChernoLogoTexture;
