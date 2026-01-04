@@ -11,6 +11,7 @@
 #include "Neva/Input.h"
 #include "Neva/KeyCodes.h"
 #include "Neva/MouseButtonCodes.h"
+#include "Neva/OrthographicCameraController.h"
 
 #include "Neva/ImGui/ImGuiLayer.h"
 
