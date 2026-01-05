@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Neva/Core.h"
+#include "Neva/Core/Core.h"
 
 namespace Neva {
 	

@@ -2,7 +2,7 @@
 
 #include "nvpch.h"
 
-#include "Neva/Core.h"
+#include "Neva/Core/Core.h"
 #include "Neva/Events/Event.h"
 
 namespace Neva {

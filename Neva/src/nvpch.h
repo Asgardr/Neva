@@ -14,7 +14,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Neva/Log.h"
+#include "Neva/Core/Log.h"
 
 #ifdef NV_PLATFORM_WINDOWS
 	#include <Windows.h>

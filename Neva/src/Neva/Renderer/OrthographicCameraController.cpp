@@ -1,8 +1,8 @@
 #include "nvpch.h"
 #include "OrthographicCameraController.h"
 
-#include "Neva/Input.h"
-#include "Neva/KeyCodes.h"
+#include "Neva/Core/Input.h"
+#include "Neva/Core/KeyCodes.h"
 
 namespace Neva {
 

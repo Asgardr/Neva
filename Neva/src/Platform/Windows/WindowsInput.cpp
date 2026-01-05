@@ -1,7 +1,7 @@
 #include "nvpch.h"
 #include "WindowsInput.h"
 
-#include "Neva/Application.h"
+#include "Neva/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Neva {

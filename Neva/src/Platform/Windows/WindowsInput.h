@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Neva/Input.h"
+#include "Neva/Core/Input.h"
 
 namespace Neva {
 

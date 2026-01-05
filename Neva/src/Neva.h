@@ -2,16 +2,16 @@
 
 // For use by Neva applications
 
-#include "Neva/Application.h";
-#include "Neva/Layer.h";
-#include "Neva/Log.h"
+#include "Neva/Core/Application.h";
+#include "Neva/Core/Layer.h";
+#include "Neva/Core/Log.h"
 
 #include "Neva/Core/Timestep.h"
 
-#include "Neva/Input.h"
-#include "Neva/KeyCodes.h"
-#include "Neva/MouseButtonCodes.h"
-#include "Neva/OrthographicCameraController.h"
+#include "Neva/Core/Input.h"
+#include "Neva/Core/KeyCodes.h"
+#include "Neva/Core/MouseButtonCodes.h"
+#include "Neva/Renderer/OrthographicCameraController.h"
 
 #include "Neva/ImGui/ImGuiLayer.h"
 
@@ -28,5 +28,5 @@
 // ------------------------------------------
 
 // ---Entry Point----------------------------
-#include "Neva/EntryPoint.h"
+#include "Neva/Core/EntryPoint.h"
 // ------------------------------------------

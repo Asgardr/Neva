@@ -57,17 +57,38 @@
     <ClInclude Include="src\Neva.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Neva\Application.h">
-      <Filter>src\Neva</Filter>
+    <ClInclude Include="src\Neva\Core\Application.h">
+      <Filter>src\Neva\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Neva\Core.h">
-      <Filter>src\Neva</Filter>
+    <ClInclude Include="src\Neva\Core\Core.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\EntryPoint.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\Input.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\KeyCodes.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\Layer.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\LayerStack.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\Log.h">
+      <Filter>src\Neva\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Core\MouseButtonCodes.h">
+      <Filter>src\Neva\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Neva\Core\Timestep.h">
       <Filter>src\Neva\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Neva\EntryPoint.h">
-      <Filter>src\Neva</Filter>
+    <ClInclude Include="src\Neva\Core\Window.h">
+      <Filter>src\Neva\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Neva\Events\ApplicationEvent.h">
       <Filter>src\Neva\Events</Filter>
@@ -84,24 +105,6 @@
     <ClInclude Include="src\Neva\ImGui\ImGuiLayer.h">
       <Filter>src\Neva\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Neva\Input.h">
-      <Filter>src\Neva</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Neva\KeyCodes.h">
-      <Filter>src\Neva</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Neva\Layer.h">
-      <Filter>src\Neva</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Neva\LayerStack.h">
-      <Filter>src\Neva</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Neva\Log.h">
-      <Filter>src\Neva</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Neva\MouseButtonCodes.h">
-      <Filter>src\Neva</Filter>
-    </ClInclude>
     <ClInclude Include="src\Neva\Renderer\Buffer.h">
       <Filter>src\Neva\Renderer</Filter>
     </ClInclude>
@@ -109,6 +112,9 @@
       <Filter>src\Neva\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Neva\Renderer\OrthographicCamera.h">
+      <Filter>src\Neva\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Neva\Renderer\OrthographicCameraController.h">
       <Filter>src\Neva\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Neva\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Neva\Renderer\VertexArray.h">
       <Filter>src\Neva\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Neva\Window.h">
-      <Filter>src\Neva</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1416,11 +1419,19 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Neva\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Neva\Application.cpp">
-      <Filter>src\Neva</Filter>
+    <ClCompile Include="src\Neva\Core\Application.cpp">
+      <Filter>src\Neva\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Neva\Core\Layer.cpp">
+      <Filter>src\Neva\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Neva\Core\LayerStack.cpp">
+      <Filter>src\Neva\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Neva\Core\Log.cpp">
+      <Filter>src\Neva\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Neva\ImGui\ImGuiBuild.cpp">
       <Filter>src\Neva\ImGui</Filter>
@@ -1428,19 +1439,13 @@
     <ClCompile Include="src\Neva\ImGui\ImGuiLayer.cpp">
       <Filter>src\Neva\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Neva\Layer.cpp">
-      <Filter>src\Neva</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Neva\LayerStack.cpp">
-      <Filter>src\Neva</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Neva\Log.cpp">
-      <Filter>src\Neva</Filter>
-    </ClCompile>
     <ClCompile Include="src\Neva\Renderer\Buffer.cpp">
       <Filter>src\Neva\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Neva\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Neva\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Neva\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Neva\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Neva\Renderer\RenderCommand.cpp">
@@ -1491,6 +1496,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Neva\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

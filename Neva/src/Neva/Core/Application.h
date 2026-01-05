@@ -3,13 +3,13 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Neva/LayerStack.h"
-#include "Events/Event.h"
+#include "Neva/Core/LayerStack.h"
+#include "Neva/Events/Event.h"
 #include "Neva/Events/ApplicationEvent.h"
 
 #include "Neva/Core/Timestep.h"
 
-#include "ImGui/ImGuiLayer.h"
+#include "Neva/ImGui/ImGuiLayer.h"
 
 namespace Neva {
 
@@ -30,10 +30,12 @@ namespace Neva {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 	private:

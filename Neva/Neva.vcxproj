@@ -147,32 +147,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Neva.h" />
-    <ClInclude Include="src\Neva\Application.h" />
-    <ClInclude Include="src\Neva\Core.h" />
+    <ClInclude Include="src\Neva\Core\Application.h" />
+    <ClInclude Include="src\Neva\Core\Core.h" />
+    <ClInclude Include="src\Neva\Core\EntryPoint.h" />
+    <ClInclude Include="src\Neva\Core\Input.h" />
+    <ClInclude Include="src\Neva\Core\KeyCodes.h" />
+    <ClInclude Include="src\Neva\Core\Layer.h" />
+    <ClInclude Include="src\Neva\Core\LayerStack.h" />
+    <ClInclude Include="src\Neva\Core\Log.h" />
+    <ClInclude Include="src\Neva\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Neva\Core\Timestep.h" />
-    <ClInclude Include="src\Neva\EntryPoint.h" />
+    <ClInclude Include="src\Neva\Core\Window.h" />
     <ClInclude Include="src\Neva\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Neva\Events\Event.h" />
     <ClInclude Include="src\Neva\Events\KeyEvent.h" />
     <ClInclude Include="src\Neva\Events\MouseEvent.h" />
     <ClInclude Include="src\Neva\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Neva\Input.h" />
-    <ClInclude Include="src\Neva\KeyCodes.h" />
-    <ClInclude Include="src\Neva\Layer.h" />
-    <ClInclude Include="src\Neva\LayerStack.h" />
-    <ClInclude Include="src\Neva\Log.h" />
-    <ClInclude Include="src\Neva\MouseButtonCodes.h" />
-    <ClInclude Include="src\Neva\OrthographicCameraController.h" />
     <ClInclude Include="src\Neva\Renderer\Buffer.h" />
     <ClInclude Include="src\Neva\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Neva\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Neva\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Neva\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Neva\Renderer\Renderer.h" />
     <ClInclude Include="src\Neva\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Neva\Renderer\Shader.h" />
     <ClInclude Include="src\Neva\Renderer\Texture.h" />
     <ClInclude Include="src\Neva\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Neva\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -603,15 +603,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Neva\Application.cpp" />
+    <ClCompile Include="src\Neva\Core\Application.cpp" />
+    <ClCompile Include="src\Neva\Core\Layer.cpp" />
+    <ClCompile Include="src\Neva\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Neva\Core\Log.cpp" />
     <ClCompile Include="src\Neva\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Neva\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Neva\Layer.cpp" />
-    <ClCompile Include="src\Neva\LayerStack.cpp" />
-    <ClCompile Include="src\Neva\Log.cpp" />
-    <ClCompile Include="src\Neva\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Neva\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Neva\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Neva\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Neva\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Neva\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Neva\Renderer\RendererAPI.cpp" />

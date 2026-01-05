@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Neva/Window.h"
+#include "Neva/Core/Window.h"
 #include <Neva/Renderer/GraphicsContext.h>
 
 #include <GLFW/glfw3.h>
