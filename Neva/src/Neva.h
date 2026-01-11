@@ -17,6 +17,7 @@
 
 // ---Renderer-------------------------------
 #include "Neva/Renderer/Renderer.h"
+#include "Neva/Renderer/Renderer2D.h"
 #include "Neva/Renderer/RenderCommand.h"
 
 #include "Neva/Renderer/Buffer.h"
@@ -25,8 +26,4 @@
 #include "Neva/Renderer/VertexArray.h"
 
 #include "Neva/Renderer/OrthographicCamera.h"
-// ------------------------------------------
-
-// ---Entry Point----------------------------
-#include "Neva/Core/EntryPoint.h"
 // ------------------------------------------

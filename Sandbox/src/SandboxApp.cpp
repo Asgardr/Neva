@@ -1,4 +1,6 @@
 #include <Neva.h>
+#include <Neva/Core/EntryPoint.h>
+
 #include <Neva/Events/KeyEvent.h>
 
 #include <Platform/OpenGL/OpenGLShader.h>
@@ -8,13 +10,15 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public Neva::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
-		m_VertexArray.reset(Neva::VertexArray::Create());
+		m_VertexArray = Neva::VertexArray::Create();
 
 		float vertices[3 * 7] =
 		{
@@ -41,7 +45,7 @@ public:
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(Neva::VertexArray::Create());
+		m_SquareVA = Neva::VertexArray::Create();
 
 		float squareVertices[5 * 4] =
 		{
@@ -221,7 +225,8 @@ class Sandbox : public Neva::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()

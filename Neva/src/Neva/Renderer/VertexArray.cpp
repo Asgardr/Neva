@@ -6,7 +6,7 @@
 
 namespace Neva {
 
-	Neva::VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -15,7 +15,7 @@ namespace Neva {
 			return nullptr;
 			break;
 		case RendererAPI::API::OpenGl:
-			return new OpenGLVertexArray();
+			return std::make_shared<OpenGLVertexArray>();
 		}
 
 		NV_CORE_ASSERT(false, "Unknown RendererAPI!");
