@@ -21,5 +21,7 @@ private:
 	Neva::Ref<Neva::VertexArray> m_SquareVA;
 	Neva::Ref<Neva::Shader> m_FlatColorShader;
 
+	Neva::Ref<Neva::Texture2D> m_CheckerboardTexture;
+
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };
